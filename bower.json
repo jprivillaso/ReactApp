@@ -1,0 +1,10 @@
+{
+  "name": "react-app",
+  "description": "My First React Application",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "react" : "15.1.0",
+    "bootstrap": "3.3.6"
+  }
+}
