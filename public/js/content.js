@@ -1,21 +1,40 @@
-var ExampleApplication = React.createClass({
+var Comment = React.createClass({
   render: function() {
-    var elapsed = Math.round(this.props.elapsed  / 100);
-    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-    var message =
-      'React has been successfully running for ' + seconds + ' seconds.';
-
-    return React.DOM.p(null, message);
+    return (
+      <div className="comment">
+        <h2 className="commentAuthor">
+          {this.props.author}
+        </h2>
+        {this.props.children}
+      </div>
+    );
   }
 });
 
-// Call React.createFactory instead of directly call ExampleApplication({...}) in React.render
-var ExampleApplicationFactory = React.createFactory(ExampleApplication);
+var CommentList = React.createClass({
+  render: function() {
+    return (
+      <div className="commentList">
+        <Comment author="Juan Rivillas">This is one comment</Comment>
+        <Comment author="Alessandra Lima">This is *another* comment</Comment>
+      </div>
+    );
+  }
+});
 
-var start = new Date().getTime();
-setInterval(function() {
-  ReactDOM.render(
-    ExampleApplicationFactory({elapsed: new Date().getTime() - start}),
-    document.getElementById('app')
-  );
-}, 50);
+var CommentBox = React.createClass({
+  render: function() {
+    return (
+      <div className="commentBox">
+        <h1>Comments</h1>
+        <CommentList />
+      </div> 
+   
+    );
+  }
+});
+
+ReactDOM.render(
+  React.createElement(CommentBox, null),
+  document.getElementById('app')
+);
